@@ -9,6 +9,8 @@
     <property name="phploc" value="phploc"/>
     <property name="phpmd" value="phpmd"/>
     <property name="phpunit" value="phpunit"/>
+    <property name="composer.path" value="${basedir}/composer.phar" />
+    <available property="composer.exists" file="${composer.path}" />
 
 
 
@@ -34,10 +36,7 @@
     </target>
 
     <target name="composer" description="Installing dependencies">
-        <exec executable="wget" failonerror="true">
-            <arg value="-nc" />
-            <arg value="http://getcomposer.org/composer.phar" />
-        </exec>
+
         <exec executable="php" failonerror="true">
             <arg value="composer.phar" />
             <arg value="install" />
