@@ -39,7 +39,6 @@
         <delete dir="${basedir}/build/pdepend"/>
         <delete dir="${basedir}/build/phpdox"/>
         <delete dir="${basedir}/vendor"/>
-        <delete file="${basedir}/composer.phar"/>
         <delete file="${basedir}/composer.lock"/>
         <property name="clean.done" value="true"/>
     </target>
