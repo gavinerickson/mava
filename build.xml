@@ -26,12 +26,27 @@
             <antcall target="phploc-ci"/>
         </parallel>
     </target>
+    <target name="composer" description="Installing dependencies">
+        <exec executable="wget" failonerror="true">
+            <arg value="-nc" />
+            <arg value="http://getcomposer.org/composer.phar" />
+        </exec>
+        <exec executable="php" failonerror="true">
+            <arg value="composer.phar" />
+            <arg value="install" />
+            <arg value="--install-suggests" />
+        </exec>
+    </target>
+
     <target name="clean" unless="clean.done" description="Cleanup build artifacts">
         <delete dir="${basedir}/build/api"/>
         <delete dir="${basedir}/build/coverage"/>
         <delete dir="${basedir}/build/logs"/>
         <delete dir="${basedir}/build/pdepend"/>
         <delete dir="${basedir}/build/phpdox"/>
+        <delete dir="${basedir}/vendor"/>
+        <delete file="${basedir}/composer.phar"/>
+        <delete file="${basedir}/composer.lock"/>
         <property name="clean.done" value="true"/>
     </target>
     <target name="prepare" unless="prepare.done" depends="clean" description="Prepare for build">
