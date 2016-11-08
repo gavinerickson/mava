@@ -35,12 +35,9 @@
         </parallel>
     </target>
 
-    <target name="composer" description="Installing dependencies">
-
-        <exec executable="php" failonerror="true">
-            <arg value="composer.phar" />
+    <target name="vendors" depends="composer">
+        <exec executable="${basedir}/composer.phar" failonerror="true">
             <arg value="install" />
-            <arg value="--install-suggests" />
         </exec>
     </target>
 
