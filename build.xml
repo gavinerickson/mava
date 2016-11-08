@@ -9,10 +9,6 @@
     <property name="phploc" value="phploc"/>
     <property name="phpmd" value="phpmd"/>
     <property name="phpunit" value="phpunit"/>
-    <property name="composer.path" value="${basedir}/composer.phar" />
-    <available property="composer.exists" file="${composer.path}" />
-
-
 
 
     <target name="full-build" depends="prepare,static-analysis,phpunit,phpdox,-check-failure" description="Performs static analysis, runs the tests, and generates project documentation"/>
@@ -33,12 +29,6 @@
             <antcall target="phpcs-ci"/>
             <antcall target="phploc-ci"/>
         </parallel>
-    </target>
-
-    <target name="vendors" depends="composer">
-        <exec executable="${basedir}/composer.phar" failonerror="true">
-            <arg value="install" />
-        </exec>
     </target>
 
 
@@ -186,4 +176,18 @@
             </condition>
         </fail>
     </target>
+
+    <target name="vendors" description="Update vendors">
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="parameters" description="Copy parameters">
+        <exec executable="cp" failonerror="true">
+            <arg path="app/config/parameters.yml.dist" />
+            <arg path="app/config/parameters.yml" />
+        </exec>
+    </target>
+
 </project>
