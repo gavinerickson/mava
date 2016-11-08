@@ -1,4 +1,6 @@
 <project name="name-of-project" default="full-build">
+
+
     <!--  By default, we assume all tools to be on the $PATH  -->
     <property name="pdepend" value="pdepend"/>
     <property name="phpcpd" value="phpcpd"/>
@@ -7,6 +9,10 @@
     <property name="phploc" value="phploc"/>
     <property name="phpmd" value="phpmd"/>
     <property name="phpunit" value="phpunit"/>
+
+
+
+
     <target name="full-build" depends="prepare,static-analysis,phpunit,phpdox,-check-failure" description="Performs static analysis, runs the tests, and generates project documentation"/>
     <target name="full-build-parallel" depends="prepare,static-analysis-parallel,phpunit,phpdox,-check-failure" description="Performs static analysis (executing the tools in parallel), runs the tests, and generates project documentation"/>
     <target name="quick-build" depends="prepare,lint,phpunit-no-coverage" description="Performs a lint check and runs the tests (without generating code coverage reports)"/>
@@ -26,6 +32,7 @@
             <antcall target="phploc-ci"/>
         </parallel>
     </target>
+
     <target name="composer" description="Installing dependencies">
         <exec executable="wget" failonerror="true">
             <arg value="-nc" />
@@ -37,6 +44,7 @@
             <arg value="--install-suggests" />
         </exec>
     </target>
+
 
     <target name="clean" unless="clean.done" description="Cleanup build artifacts">
         <delete dir="${basedir}/build/api"/>
