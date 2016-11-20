@@ -55,18 +55,11 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="composer" >
-        <condition property="composer.command" value="update" else="install">
-            <available file="${composer.lock}"/>
-        </condition>
-        <echo message="Beginning composer ${composer.command}" level="debug" />
-        <exec executable="${composer.phar}">
-            <arg value="${composer.command}" />
-            <arg value="--no-interaction" />
-            <arg value="--optimize-autoloader" />
-            <arg value="--dev" />
+    <target name="composer"  description="Run composer update">
+        <exec executable="${php}">
+            <arg value="${composer}"/>
+            <arg value="update"/>
         </exec>
-        <echo message="composer ${composer.command} complete" level="debug"/>
     </target>
 
     <target name="lint" unless="lint.done" description="Perform syntax check of sourcecode files">
