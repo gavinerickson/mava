@@ -59,7 +59,7 @@
             <arg value="install" />
 
             <arg value="--prefer-dist" />
-            <arg value="--no-progress" />
+            <arg value="--progress" />
 
             <env key="SYMFONY_ENV" value="test"/>
         </exec>
