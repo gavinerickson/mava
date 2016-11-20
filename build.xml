@@ -58,7 +58,6 @@
         <exec executable="composer" failonerror="true">
             <arg value="install" />
 
-            <arg value="--prefer-dist" />
             <arg value="--verbose" />
 
             <env key="SYMFONY_ENV" value="test"/>
