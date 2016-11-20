@@ -42,5 +42,10 @@
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
             </exclude>
         </whitelist>
+        <blacklist>
+            <directory>config</directory>
+            <directory>vendor</directory>
+            <directory>module/*/config</directory>
+        </blacklist>
     </filter>
 </phpunit>
