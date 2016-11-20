@@ -42,6 +42,10 @@
                 <directory>src/*/Bundle/*Bundle/Resources</directory>
             </exclude>
         </whitelist>
+    </filter>
+
+    <!-- ignore folders for code coverage -->
+    <filter>
         <blacklist>
             <directory>config</directory>
             <directory>vendor</directory>
