@@ -55,13 +55,18 @@
         <property name="prepare.done" value="true"/>
     </target>
 
-    <target name="composer" description="Installing composer dependencies">
-        <exec executable="composer" failonerror="true">
-            <arg value="install" />
-
-
-            <env key="SYMFONY_ENV" value="test"/>
+    <target name="composer" >
+        <condition property="composer.command" value="update" else="install">
+            <available file="${composer.lock}"/>
+        </condition>
+        <echo message="Beginning composer ${composer.command}" level="debug" />
+        <exec executable="${composer.phar}">
+            <arg value="${composer.command}" />
+            <arg value="--no-interaction" />
+            <arg value="--optimize-autoloader" />
+            <arg value="--dev" />
         </exec>
+        <echo message="composer ${composer.command} complete" level="debug"/>
     </target>
 
     <target name="lint" unless="lint.done" description="Perform syntax check of sourcecode files">
