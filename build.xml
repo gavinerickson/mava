@@ -56,8 +56,8 @@
     </target>
 
     <target name="composer"  description="Run composer update">
-        <exec executable="${php}">
-            <arg value="${composer}"/>
+        <exec executable="${composer}">
+
             <arg value="update"/>
         </exec>
     </target>
